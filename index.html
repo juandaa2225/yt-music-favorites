@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Demo YouTube Playlist</title>
+  <style>
+    :root {
+      --bg: #0f1720;
+      --panel: #16202c;
+      --panel-2: #1c2938;
+      --line: #2a3a4c;
+      --text: #edf2f7;
+      --muted: #a8b5c4;
+      --accent: #d6b16f;
+      --max: 1120px;
+      --radius: 22px;
+      --shadow: 0 18px 50px rgba(0,0,0,0.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1a2634, var(--bg) 46%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .container { width: min(var(--max), calc(100% - 32px)); margin: 0 auto; }
+    .hero { padding: 64px 0 28px; }
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(214,177,111,0.12);
+      border: 1px solid rgba(214,177,111,0.28);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 18px;
+    }
+    h1 {
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+      margin: 0 0 16px;
+      max-width: 10ch;
+    }
+    .lead {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 62ch;
+      margin: 0 0 28px;
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 13px 18px; border-radius: 999px; font-weight: 700;
+      text-decoration: none; border: 1px solid transparent;
+    }
+    .btn-primary { background: var(--accent); color: #1b1205; }
+    .btn-secondary { border-color: var(--line); background: rgba(255,255,255,0.03); color: var(--text); }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 22px;
+      margin: 26px 0 52px;
+    }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .card-body { padding: 22px; }
+    .card h2, .card h3 { margin-top: 0; letter-spacing: -0.03em; }
+    .card p { color: var(--muted); }
+    .video-shell {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+      background: #0b1016;
+    }
+    .video-shell iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .meta-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .meta-item {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.02);
+    }
+    .meta-label {
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .meta-value {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .note {
+      margin: 0 auto 44px;
+      max-width: 860px;
+      padding: 22px;
+      background: rgba(214,177,111,0.08);
+      border: 1px solid rgba(214,177,111,0.22);
+      border-radius: 18px;
+      color: #f2e5ca;
+    }
+    footer {
+      padding: 0 0 42px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <section class="hero">
+    <div class="container">
+      <div class="badge">Demo de incrustación</div>
+      <h1>YouTube dentro de tu web</h1>
+      <p class="lead">
+        Esta página prueba que puedes mostrar una playlist de YouTube directamente dentro de un sitio publicado con GitHub Pages,
+        sin backend y sin conectar tu cuenta de YouTube al repo.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#playlist">Ver playlist</a>
+        <a class="btn btn-secondary" href="https://www.youtube.com/playlist?list=PLKILDy-GKa7-PW_9HDgqBeBimKX_i5XT1" target="_blank" rel="noreferrer">Abrir en YouTube</a>
+      </div>
+
+      <div class="grid" id="playlist">
+        <article class="card">
+          <div class="video-shell">
+            <iframe
+              src="https://www.youtube.com/embed/videoseries?list=PLKILDy-GKa7-PW_9HDgqBeBimKX_i5XT1"
+              title="Playlist de YouTube"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+          <div class="card-body">
+            <h2>Playlist embebida</h2>
+            <p>
+              Esta es la forma más simple de mostrar predicaciones, estudios o música desde YouTube dentro de la página de tu iglesia.
+              El reproductor mantiene la navegación entre videos de la lista.
+            </p>
+          </div>
+        </article>
+
+        <aside class="card">
+          <div class="card-body">
+            <h3>Qué demuestra esta prueba</h3>
+            <div class="meta-list">
+              <div class="meta-item">
+                <div class="meta-label">Funciona en Pages</div>
+                <div class="meta-value">Sí, solo con HTML + iframe</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Fuente</div>
+                <div class="meta-value">Playlist pública de YouTube</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Backend</div>
+                <div class="meta-value">No hace falta</div>
+              </div>
+              <div class="meta-item">
+                <div class="meta-label">Caso de uso</div>
+                <div class="meta-value">Predicaciones, estudios, música, anuncios</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="note">
+        Luego podemos mejorar esto con una página completa de <strong>Predicaciones</strong>, miniaturas, títulos, categorías,
+        series y un diseño más parecido al de <strong>Sendas de Gracia</strong>.
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">Prueba de YouTube playlist embed · GitHub Pages + HTML estático</div>
+  </footer>
+</body>
+</html>
